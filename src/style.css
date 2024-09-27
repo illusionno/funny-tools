@@ -1,0 +1,180 @@
+.auto-wrap {
+    min-height: 890px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    background-image: linear-gradient(45deg,
+            #cefffe 0%,
+            #dfdcfc 48%,
+            #f1d1d5 100%);
+}
+
+.box-wrap {
+    margin: auto;
+    padding: 24px;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    width: 1200px;
+}
+
+.back-btn {
+    color: #fff;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #9d9ceb;
+    padding:3px ;
+    /* will-change: filter;
+    transition: filter 300ms; */
+}
+
+.back-btn:hover {
+    filter: drop-shadow(0 0 1em #9d9ceb);
+
+}
+
+/* Float Shadow */
+.hvr-float-shadow:hover { 
+    transform: perspective(1px) translateZ(0) translateY(-6px);
+    transition-duration: 0.3s;
+}
+
+.hvr-float-shadow:hover:before {
+    opacity: 1;
+    transform: scale(1.07);
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+/* Float Shadow */
+.hvr-float-shadow {
+    display: inline-block;
+    vertical-align: middle;
+    /* 创建一个3D透视效果，但因为透视距离为1px，实际上几乎不产生视觉上的深度感。沿Z轴移动0像素，即不改变元素的位置。*/
+    /*主要为了确保元素处于3D渲染上下文中，便于后续可能的3D变换应用  */
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(170, 170, 170, 0);
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.hvr-float-shadow:before {
+    /* 不会响应鼠标事件 */
+    pointer-events: none;
+    position: absolute;
+    z-index: -1;
+    content: "";
+    top: 100%;
+    left: 5%;
+    height: 10px;
+    width: 90%;
+    opacity: 0;
+    background: -webkit-radial-gradient(center,
+            ellipse,
+            rgba(0, 0, 0, 0.35) 0%,
+            rgba(0, 0, 0, 0) 80%);
+    /* ellipse at center：椭圆形状，中心位置。
+rgba(0, 0, 0, 0.35) 0%：起点颜色为半透明黑色。
+rgba(0, 0, 0, 0) 80%：80%位置渐变为完全透明。 */
+    background: radial-gradient(ellipse at center,
+            rgba(0, 0, 0, 0.35) 0%,
+            rgba(0, 0, 0, 0) 80%);
+    transition-duration: 0.3s;
+    transition-property: transform, opacity;
+}
+
+.hvr-float-shadow:hover,
+.hvr-float-shadow:focus,
+.hvr-float-shadow:active {
+    /* 使元素整体向上移动5像素 */
+    transform: translateY(-5px);
+}
+
+.hvr-float-shadow:hover:before,
+.hvr-float-shadow:focus:before,
+.hvr-float-shadow:active:before {
+    opacity: 1;
+    /* 伪元素悬停时显示，并向下移动5像素，与主元素位移抵消，视觉上保持原位 */
+    transform: translateY(5px);
+}
+
+/* Sweep To Top */
+.hvr-sweep-to-top {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    position: relative;
+    -webkit-transition-property: color;
+    transition-property: color;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+
+.hvr-sweep-to-top:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #2098D1;
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+    -webkit-transform-origin: 50% 100%;
+    transform-origin: 50% 100%;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
+.hvr-sweep-to-top:hover,
+.hvr-sweep-to-top:focus,
+.hvr-sweep-to-top:active {
+    color: white;
+}
+
+.hvr-sweep-to-top:hover:before,
+.hvr-sweep-to-top:focus:before,
+.hvr-sweep-to-top:active:before {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+}
+
+.threeD {
+    color: #fff;
+    font-size: 46px;
+    /*设置字体大小*/
+    font-weight: 600;
+    /*设置字体粗细*/
+    letter-spacing: 2px;
+    text-shadow: 1px 0px #afaef8, 1px 2px #e897f0, 3px 1px #807ff1,
+        2px 3px #afaef8, 4px 2px #f097a3, 4px 4px #afaef8, 5px 3px #807ff1,
+        5px 5px #afaef8, 7px 4px #807ff1, 6px 6px #afaef8, 8px 5px #807ff1,
+        7px 7px #afaef8, 9px 6px #807ff1, 9px 8px #afaef8, 11px 7px #807ff1;
+    /*设置文字阴影*/
+}
+
+.threeD:hover {
+    cursor: pointer;
+    text-shadow: 2px 0px #afaef8, 1px 2px #e897f0, 3px 1px #807ff1,
+        2px 3px #afaef8, 4px 2px #f097a3, 4px 4px #afaef8, 5px 3px #807ff1
+}
+
+.tag {
+    display: inline-block;
+    padding: 6px 12px;
+    color: #2e1414;
+    font-family: "STKaiti";
+    font-size: 16px;
+    background-color: #d9d8f8;
+    border-radius: 6px;
+    border-right: 3px solid #9d9ceb;
+    border-top: 3px solid #afaef8;
+  }

@@ -1,0 +1,28 @@
+{
+  // https://www.tslang.cn/docs/handbook/tsconfig-json.html
+  // https://typescript.p6p.net/typescript-tutorial/tsconfig.json.html
+  "extends": "@vue/tsconfig/tsconfig.json", // pnpm i @vue/tsconfig
+  "compilerOptions": {
+    "baseUrl": ".",
+    "allowJs": true, //指定源目录的 JavaScript 文件是否原样拷贝到编译后的目录
+    "types": [
+      "vite/client",//确保 TypeScript 可以正确识别 Vite 的类型
+      "unplugin-icons/types/vue",
+      "@vueuse/integrations",
+    ],
+    "target": "ES6",
+    "isolatedModules": true,
+    "paths": {
+      "@/*": [
+        "src/*",
+      ],
+      "@lodash": [
+        "node_modules/lodash-es"
+      ]
+    }
+  },
+  "exclude": [ //定义哪些是不被处理的
+    "dist",
+    "node_modules"
+  ],
+}

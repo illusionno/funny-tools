@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue-color</title>
+  <script src="https://unpkg.com/vue@latest/dist/vue.global.prod.js"></script>
+  <script src="https://unpkg.com/@ckpack/vue-color@latest/dist/index.min.js"></script>
+</head>
+<style>
+  html,body,#app{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .color-wrapper > div {
+    margin: 24px 0;
+  }
+</style>
+<body>
+  <div id="app">
+    <div class="color-wrapper" :style="{'background-color': typeof colors === 'object' ? colors.hex8 : colors}">
+      <Chrome v-model="colors"></Chrome>
+      <Compact v-model="colors"></Compact>
+      <Grayscale v-model="colors"></Grayscale>
+      <Material v-model="colors"></Material>
+      <Photoshop v-model="colors"></Photoshop>
+      <Sketch v-model="colors"></Sketch>
+      <Slider v-model="colors"></Slider>
+      <Swatches v-model="colors"></Swatches>
+      <Twitter v-model="colors"></Twitter>
+    </div>
+  </div>
+</body>
+<script>
+  const app = Vue.createApp({
+    data() {
+      return {
+        colors: '#194D33A8',
+      };
+    },
+  });
+  app.use(VueColor);
+  app.mount('#app');
+</script>
+</html>
