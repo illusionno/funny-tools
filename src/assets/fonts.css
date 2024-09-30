@@ -2,3 +2,10 @@
     font-family: "MaoKenWangXingYuan";
     src: url('@/assets/fonts/MaoKenWangXingYuan-2.ttf');
   }
+  @font-face {
+    font-family: Doko-Book;
+    src: url("https://robindelaporte.fr/codepen/play/BwModelicaSS01-ExtraBold.woff")
+      format("woff");
+    font-style: italic !important;
+    font-weight: 400;
+  }

@@ -1,8 +1,10 @@
 <script setup>
+import Demo from '@/views/dom-display/Demo.vue'
 </script>
 
 <template>
  <router-view></router-view>
+  <!-- <Demo></Demo> -->
 </template>
 
 <style scoped>

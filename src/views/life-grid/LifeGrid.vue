@@ -1,7 +1,7 @@
 <template>
   <div class="auto-wrap" ref="exportContent">
     <EpBack
-      class="hvr-sweep-to-top back-btn"
+      class="hvr-pulse back-btn"
       @click="router.push({ name: 'index' })"
     />
     <div>

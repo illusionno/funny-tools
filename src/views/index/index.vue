@@ -1,7 +1,7 @@
 <template>
   <div class="auto-wrap index-wrap">
     <EpBack
-      class="hvr-sweep-to-top back-btn"
+      class="hvr-pulse back-btn"
       @click="router.push({ name: 'home' })"
     />
     <div class="content-wrap">
@@ -14,24 +14,24 @@
               :key="subItem.path"
               @click="router.push({ name: subItem.path })"
             >
-            <div class="flex justify-center mb-12 ">
-              <span class="box-title">{{ subItem.title}}</span>
-            </div>
+              <div class="flex justify-center mb-12">
+                <span class="box-title">{{ subItem.title }}</span>
+              </div>
               <div class="box">
                 <div class="img-container">
-                <el-image
-                  :src="subItem.img"
-                  :alt="subItem.title"
-                  fit="cover"
-                  class="image"
-                />
-              </div>
+                  <el-image
+                    :src="subItem.img"
+                    :alt="subItem.title"
+                    fit="cover"
+                    class="image"
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="border">右侧</div>
+      <div class="right-panel">右侧</div>
     </div>
   </div>
 </template>
@@ -66,8 +66,9 @@ const allLists = [
         path: "ip-compute",
       },
       {
-        title: "B",
+        title: "HTML元素查看",
         img: Img.Bg5,
+        path: "dom-display",
       },
       {
         title: "C",
@@ -86,11 +87,8 @@ const allLists = [
 ];
 </script>
 <style scoped lang="scss">
-
-
 .index-wrap {
-  width: 100%;
-  height: 100%;
+  min-height: 100vh;
   --color: #ede6fa;
   background-image: linear-gradient(
       0deg,
@@ -127,19 +125,20 @@ const allLists = [
 .content-wrap {
   display: grid;
   grid-template-columns: 3fr 1fr;
+  gap:24px;
   margin-top: 24px;
-  .box-title{
+  .box-title {
     padding: 3px 0;
-    font-family: 'MaoKenWangXingYuan', sans-serif;
+    font-family: "MaoKenWangXingYuan", sans-serif;
     font-size: 18px;
     background-color: #ede6fa;
     color: #0000009d;
-    padding:3px 12px;
+    padding: 3px 12px;
     border-radius: 6px;
   }
 }
-.border {
-  border: 1px solid #d2d2f7;
+.right-panel{
+  background-color: #ede6fa;
 }
 .shell {
   position: relative;

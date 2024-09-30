@@ -1,11 +1,5 @@
 <template>
-  <div class="auto-wrap">
-    <EpBack
-      class="hvr-sweep-to-top back-btn"
-      @click="router.push({ name: 'index' })"
-    />
-   <div>
-    <VTitleBar title="图片转像素画" />
+  <VContainer title="图片转像素画">
     <div class="box-wrap flex flex-col gap-12">
       <div class="flex items-center justify-between">
         <VUpload @change="handleChanges" />
@@ -34,20 +28,17 @@
         <canvas ref="canvas"></canvas>
       </div>
     </div>
-   </div>
-  </div>
+  </VContainer>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 import Demo from "@/assets/imgs/demo.jpg";
 import PhExportDuotone from "~icons/ph/export-duotone";
-import { useRouter } from "vue-router";
 import VUpload from "@/components/v-upload/uploadIndex.vue";
-import VTitleBar from "@/components/v-title-bar/TitleBar.vue";
+import VContainer from "@/components/v-container/Container.vue";
 import { fileToBase64, convertUrlToFile, exportImage } from "@/utils/common";
 
-const router = useRouter();
 const canvas = ref<HTMLCanvasElement | null>(null);
 const imgUrl = ref(Demo);
 const pixelSize = ref(10);
@@ -124,13 +115,13 @@ const pixelate = (
 
 <style scoped lang="scss">
 :deep(.el-slider__bar) {
-    background-image: linear-gradient(
-      to right,
-      #b5e6f8,
-      #7cb2e8e6
-    ); /* Chrome 10-25, Safari 5.1-6 */
-  }
-  :deep(.el-button) {
-    background-color: #7cb2e8e6;
-  }
+  background-image: linear-gradient(
+    to right,
+    #b5e6f8,
+    #7cb2e8e6
+  ); /* Chrome 10-25, Safari 5.1-6 */
+}
+:deep(.el-button) {
+  background-color: #7cb2e8e6;
+}
 </style>

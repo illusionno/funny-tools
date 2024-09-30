@@ -27,7 +27,6 @@ const routes = [
     path: "/index/life-grid",
     name: "life-grid",
     component: () => import("@/views/life-grid/LifeGrid.vue"),
-
   },
   {
     path: "/index/color-identify",
@@ -38,6 +37,11 @@ const routes = [
     path: "/index/ip-compute",
     name: "ip-compute",
     component: () => import("@/views/ip-compute/IpCompute.vue"),
+  },
+  {
+    path: "/index/dom-display",
+    name: "dom-display",
+    component: () => import("@/views/dom-display/DomDisplay.vue"),
   },
   // {
 

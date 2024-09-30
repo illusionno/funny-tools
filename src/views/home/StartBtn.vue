@@ -142,13 +142,7 @@ a {
   @include btn-draw($color-blue, $color-blue-bg, $color-grey, 2px);
 
 z-index: 99;// Base64 font
-@font-face {
-  font-family: Doko-Book;
-  src: url("https://robindelaporte.fr/codepen/play/BwModelicaSS01-ExtraBold.woff")
-    format("woff");
-  font-style: italic !important;
-  font-weight: 400;
-}
+
 
 // Font variables
 $font: Doko-Book, sans-serif;

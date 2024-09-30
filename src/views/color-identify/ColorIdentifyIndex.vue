@@ -6,7 +6,6 @@
     />
     <VTitleBar title="颜色识别" />
     <div class="box-wrap flex flex-col gap-12">
-      {{ colors }}
       <el-input
         v-model="colorVal"
         placeholder="输入颜色代码:#ffffff"
