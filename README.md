@@ -1,6 +1,6 @@
 # Funny Tools
 
-It is still going on...
+It is still going on... 未完待续...
 
 ## Front page
 
@@ -25,3 +25,13 @@ It is still going on...
 ### 颜色识别
 ![alt text](/public/imgs/image-4.png)
 ![alt text](/public/imgs/20240930_160011.gif)
+
+## HTML元素查看
+### DOM元素查看
+类似于开发者工具中的元素查看, 但是只能查看元素的DOM结构，可以对元素节点进行展开和折叠。
+实现过程：使用[html-dom-parser](https://github.com/remarkablemark/html-dom-parser)库解析html，然后使用递归遍历 JavaScript 对象，生成嵌套的节点结构。
+![alt text](/public/imgs/image-5.png)
+
+### 代码高亮显示
+使用hightlight.js实现代码高亮显示，支持多种编程语言。
+![alt text](/public/imgs/image-6.png)

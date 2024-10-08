@@ -2,9 +2,11 @@
   <VContainer title="HTML元素查看">
     <div class="flex flex-col gap-12">
       <div class="box-wrap">
+        <div class="tag mb-6">DOM元素查看</div>
         <VElementParse :html="html" />
       </div>
       <div class="box-wrap">
+        <div class="tag mb-6">代码高亮显示</div>
         <pre><code class="language-js" v-html="highlightedCode"></code></pre>
       </div>
     </div>

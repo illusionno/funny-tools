@@ -37,10 +37,10 @@ function toggleExpand(path: string) {
     expandedNodes.value.add(path);
   }
 }
-//  默认展开所有节点
+// 默认展开子节点数大于2的节点
 function expandAllNodes(nodes: DOMNode[], parentPath = "") {
   nodes.forEach((node, index) => {
-    if (node.type === "tag" && node.children?.length > 0) {
+    if (node.type === "tag" && node.children?.length > 2) {
       const path = generatePath(index, parentPath);
       expandedNodes.value.add(path);
       // 递归处理子节点
