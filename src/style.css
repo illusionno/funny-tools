@@ -66,4 +66,23 @@
     border-radius: 6px;
     border-right: 3px solid #9d9ceb;
     border-top: 3px solid #afaef8;
+    cursor: pointer;
   }
+.tag-btn{
+    display: inline-block;
+    color: #614a4a;
+    font-family: "MaoKenWangXingYuan",sans-serif;
+    font-size: 16px;
+    background-color: #d9d8f8;
+    border-radius: 6px;
+    border-right: 3px solid #9d9ceb;
+    border-top: 3px solid #afaef8;
+    cursor: pointer;
+    padding: 0 8px;
+}
+.tag-btn:hover {
+    background-color: #c1c0f7;
+
+
+
+}
