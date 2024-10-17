@@ -22,21 +22,25 @@
               :controls="false"
               class="w-60!"
             />
-            <div class="tag-btn hvr-pulse-shrink" @click="handleCalculate">计算</div>
-            <div class="tag-btn hvr-pulse-shrink" @click="handleClear">清除</div>
+            <div class="tag-btn hvr-pulse-shrink" @click="handleCalculate">
+              计算
+            </div>
+            <div class="tag-btn hvr-pulse-shrink" @click="handleClear">
+              清除
+            </div>
           </div>
         </el-form-item>
         <el-form-item label="IP起始地址" prop="ipStart">
           <el-input
             v-model.trim="editForm.ipStart"
-            placeholder="请输入IP起始地址"
+            disabled
             clearable
           ></el-input>
         </el-form-item>
         <el-form-item label="IP结束地址" prop="ipEnd">
           <el-input
             v-model.trim="editForm.ipEnd"
-            placeholder="请输入IP结束地址"
+            disabled
             clearable
           ></el-input>
         </el-form-item>
@@ -62,6 +66,7 @@ const convertState = reactive({
   mask: null as number | null,
 });
 
+// 输入时得校验
 const handleInput = (i: number) => {
   const val = convertState.ip[i];
   // 只允许数字
@@ -122,6 +127,7 @@ function calculateIpRange(ip: string, maskBits: number) {
   const endIpAddress = endIpInt !== null ? intToIp(endIpInt) : null;
   return [startIpAddress, endIpAddress];
 }
+// 计算
 const handleCalculate = () => {
   if (
     _.some(convertState.ip, (item: any) => _.isEmpty(item)) ||
