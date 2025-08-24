@@ -19,41 +19,60 @@ const routes = [
     component: () => import("@/views/index/index.vue"),
   },
   {
-    path: "/index/pixel-art",
+    path: "/pixel-art",
     name: "pixel-art",
     component: () => import("@/views/Pixel-art/PixelArt.vue"),
   },
   {
-    path: "/index/life-grid",
+    path: "/life-grid",
     name: "life-grid",
     component: () => import("@/views/life-grid/LifeGrid.vue"),
   },
   {
-    path: "/index/color-identify",
+    path: "/color-identify",
     name: "color-identify",
     component: () => import("@/views/color-identify/ColorIdentifyIndex.vue"),
   },
   {
-    path: "/index/ip-compute",
+    path: "/ip-compute",
     name: "ip-compute",
     component: () => import("@/views/ip-compute/IpCompute.vue"),
   },
   {
-    path: "/index/dom-display",
+    path: "/dom-display",
     name: "dom-display",
     component: () => import("@/views/dom-display/DomDisplay.vue"),
   },
-  // {
-
-  //     path: '/layout', name: 'layout', component: () => import('@/views/layout/LayoutIndex.vue'),
-  //     children: [{
-  //         // 主页
-  //         path: '/home', name: 'home', compoent: () => import('@/views/home/homeIndex.vue')
-  //     }, {
-  //         // 前端-javascript
-  //         path: '/javascript', name: 'javascript', component: () => import('@/views/font-end/javascript/JavascriptIndex.vue')
-  //     }]
-  // },
+  {
+    path: "/daily-fortune",
+    name: "daily-fortune",
+    component: () => import("@/views/daily-fortune/DailyFortune.vue"),
+  },
+  {
+    path: "/linux-command",
+    name: "linux-command",
+    component: () => import("@/views/linux-command/LinuxCommand.vue"),
+  },
+  {
+    path: "/three-shadow",
+    name: "three-shadow",
+    component: () => import("@/views/three-js/Shadow.vue"),
+  },
+  {
+    path: "/three-texture",
+    name: "three-texture",
+    component: () => import("@/views/three-js/Texture.vue"),
+  },
+  {
+    path: "/three-skybox",
+    name: "three-skybox",
+    component: () => import("@/views/three-js/SkyBox.vue"),
+  },
+  {
+    path: "/three-pbr",
+    name: "three-pbr",
+    component: () => import("@/views/three-js/PBR_material.vue"),
+  },
 ];
 const router = createRouter({
   history: createWebHashHistory(),

@@ -1,10 +1,29 @@
-import Bg1 from "@/assets/imgs/pixel-art.png";
-import Bg2 from "@/assets/imgs/bg2.png";
-import Bg3 from "@/assets/imgs/bg3.png";
-import Bg4 from "@/assets/imgs/bg4.png";
-import Bg5 from "@/assets/imgs/bg5.png";
-import Bg6 from "@/assets/imgs/bg6.png";
-import Bg7 from "@/assets/imgs/bg7.png";
-import Bg8 from "@/assets/imgs/bg8.png";
+import pixel from "@/assets/imgs/pixel.png";
+import fortune from "@/assets/imgs/fortune.png";
+import color from "@/assets/imgs/color.png";
+import ip from "@/assets/imgs/ip.png";
+import html from "@/assets/imgs/html.png";
+import life from "@/assets/imgs/life.png";
+import linux from "@/assets/imgs/linux.png";
+import qrcode from "@/assets/imgs/qrcode.png";
+import text from "@/assets/imgs/text.png";
+import shadow from "@/assets/imgs/shadow.png";
+import texture from "@/assets/imgs/texture.png";
+import skybox from "@/assets/imgs/skybox.png";
+import prb from "@/assets/imgs/prb.png";
 
-export { Bg1, Bg2, Bg3, Bg4, Bg5 ,Bg6, Bg7 ,Bg8 };
+export {
+  pixel,
+  fortune,
+  color,
+  ip,
+  html,
+  life,
+  linux,
+  qrcode,
+  text,
+  shadow,
+  texture,
+  skybox,
+  prb
+};

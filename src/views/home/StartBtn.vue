@@ -107,7 +107,7 @@ body {
 }
 
 // Color variables
-$color-blue: #ec94af;
+$color-blue: #d47c97;
 $color-blue-bg: #a58dff;
 // $color-blue: #324577;
 $color-grey: #fff;
@@ -146,7 +146,7 @@ z-index: 99;// Base64 font
 
 // Font variables
 $font: Doko-Book, sans-serif;
-$color: #f0a9a9;
+$color: #d79696;
 $color-hov: #c5c4c4;
 $bg-color: #fff;
 $width: 2px;
