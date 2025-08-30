@@ -201,3 +201,9 @@
 .lil-gui .cr {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+.three-wrapper {
+  width: 100%;
+  height: calc(100vh - 200px); /* 调整高度以适应容器 */
+  overflow: hidden;
+}

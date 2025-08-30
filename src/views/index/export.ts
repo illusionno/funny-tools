@@ -11,6 +11,10 @@ import shadow from "@/assets/imgs/shadow.png";
 import texture from "@/assets/imgs/texture.png";
 import skybox from "@/assets/imgs/skybox.png";
 import prb from "@/assets/imgs/prb.png";
+import frog from "@/assets/imgs/frog.png";
+import himisphere from "@/assets/imgs/himisphere.png";
+import particle from "@/assets/imgs/particle.png";
+import water from "@/assets/imgs/water.png";
 
 export {
   pixel,
@@ -25,5 +29,9 @@ export {
   shadow,
   texture,
   skybox,
-  prb
+  prb,
+  frog,
+  particle,
+  himisphere,
+  water
 };

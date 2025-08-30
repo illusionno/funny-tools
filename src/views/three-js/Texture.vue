@@ -28,7 +28,7 @@ const init = () => {
 
   );
   // 设置相机位置
-  camera.position.set(0, 5, 10);
+  camera.position.set(0, 3, 3);
   // 渲染器
   renderer = new THREE.WebGLRenderer({
     antialias: true, // 抗锯齿

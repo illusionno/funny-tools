@@ -11,10 +11,7 @@
       <!-- 工具展示区域 -->
       <div>
         <!-- 工具网格 -->
-        <div
-          v-for="item in allLists"
-          :key="item.type"
-        >
+        <div v-for="item in allLists" :key="item.type">
           <div class="tools-title">{{ item.type }}</div>
           <div class="tools-grid mb-30">
             <div
@@ -178,7 +175,8 @@ import * as Img from "./export";
 import { ElMessage } from "element-plus";
 const router = useRouter();
 const dailyText = ref("");
-const allLists = [  {
+const allLists = [
+  {
     type: "Three.js案例 ｡◕‿◕｡",
     lists: [
       {
@@ -190,15 +188,37 @@ const allLists = [  {
         title: "纹理贴图",
         img: Img.texture,
         path: "three-texture",
-      },{
-        title:'天空盒',
+      },
+      {
+        title: "天空盒",
         img: Img.skybox,
-        path:'three-skybox'
-      },{
-        title:'PBR基于物理材质的渲染',
-       img: Img.prb,
-        path:'three-pbr'
-      }
+        path: "three-skybox",
+      },
+      {
+        title: "PBR基于物理材质的渲染",
+        img: Img.prb,
+        path: "three-pbr",
+      },
+      {
+        title: "雾化",
+        img: Img.frog,
+        path: "three-fog",
+      },
+      {
+        title: "粒子系统",
+        img: Img.particle,
+        path: "three-particle",
+      },
+      {
+        title: "半球光",
+        img: Img.himisphere,
+        path: "three-hemisphere-light",
+      },
+      {
+        title: "水波纹与天空",
+        img: Img.water,
+        path: "three-water",
+      },
     ],
   },
   {
@@ -256,7 +276,6 @@ const allLists = [  {
       },
     ],
   },
-
 ];
 // 心情相关
 const selectedMood = ref();
@@ -472,7 +491,6 @@ const totalToolsCount = computed(() => {
   border-radius: 16px;
   margin-bottom: 16px;
 }
-
 
 // 工具网格
 .tools-grid {

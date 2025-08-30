@@ -73,6 +73,31 @@ const routes = [
     name: "three-pbr",
     component: () => import("@/views/three-js/PBR_material.vue"),
   },
+   {
+    path: "/three-fog",
+    name: "three-fog",
+    component: () => import("@/views/three-js/Fog.vue"),
+  },
+  {
+    path: "/three-particle",
+    name: "three-particle",
+    component: () => import("@/views/three-js/ParticleSystem.vue"),
+  },
+  {
+    path: "/three-hemisphere-light",
+    name: "three-hemisphere-light",
+    component: () => import("@/views/three-js/HemisphereLight.vue"),
+  },
+  // {
+  //   path: "/three-raycaster",
+  //   name: "three-raycaster",
+  //   component: () => import("@/views/three-js/Raycaster.vue"),
+  // },
+  {
+    path: "/three-water",
+    name: "three-water",
+    component: () => import("@/views/three-js/Water.vue"),
+  }
 ];
 const router = createRouter({
   history: createWebHashHistory(),
