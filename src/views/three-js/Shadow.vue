@@ -43,7 +43,7 @@ const init = () => {
   scene.add(light);
 
   // 地面（接受阴影）
-  const groundGeo = new THREE.PlaneGeometry(10, 10);
+  const groundGeo = new THREE.PlaneGeometry(100, 100);
   const groundMat = new THREE.MeshStandardMaterial({
     color: 0x888888,
   });
@@ -58,7 +58,6 @@ const init = () => {
   const ballMat = new THREE.MeshStandardMaterial({// 材质必须是 支持光照的材质
     color: 0xff0000,
   });
-// 有一天，我看了44次日落。含义是
 
   const ball = new THREE.Mesh(ballGeo, ballMat);
   ball.position.set(0, 1, 0);

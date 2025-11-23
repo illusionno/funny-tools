@@ -19,7 +19,7 @@ const props = defineProps<{
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 48px;
+  margin-bottom:24px;
   padding: 0 20px;
 }
 
@@ -99,7 +99,7 @@ const props = defineProps<{
 /* 响应式优化 */
 @media (max-width: 768px) {
   .title-container {
-    margin-bottom: 32px;
+    margin-bottom: 24px;
     padding: 0 16px;
   }
   

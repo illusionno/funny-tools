@@ -1,10 +1,32 @@
 <template>
   <div class="auto-wrap index-wrap">
     <!-- 返回按钮 -->
-    <EpBack
-      class="hvr-sweep-to-top back-btn"
-      @click="router.push({ name: 'home' })"
-    />
+    <div class="flex justify-between items-center">
+      <EpBack
+        class="hvr-sweep-to-top back-btn"
+        @click="router.push({ name: 'home' })"
+      />
+      <a
+        href="https://github.com/illusionno/funny-tools"
+        target="_blank"
+        rel="noopener noreferrer"
+        style="
+          text-decoration: none;
+          color: #000;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <img
+          class="w-44"
+          src="../../assets/imgs/github.png"
+          alt="GitHub"
+          style="cursor: pointer"
+        />
+        <span class="ml-4">代码仓库</span>
+      </a>
+    </div>
 
     <!-- 主要内容区域 -->
     <div class="content-wrap">

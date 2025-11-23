@@ -28,22 +28,26 @@ const init = () => {
   });
   renderer.setSize(window.innerWidth, window.innerHeight); // 设置渲染器大小
   renderer.setPixelRatio(window.devicePixelRatio); // // 适应不同的设备屏幕
+  renderer.shadowMap.enabled = true; //开启阴影
   threeRef.value.append(renderer.domElement); // 将渲染器添加到DOM中
 
   // 添加半球光
-  const hemiLight = new THREE.HemisphereLight(0x87ceeb, 0xffffff,1.2); // 参数：天空颜色, 地面颜色, 强度
+  const hemiLight = new THREE.HemisphereLight(0x87ceeb, 0xffffff, 1.2); // 参数：天空颜色, 地面颜色, 强度
   scene.add(hemiLight);
-  //
-  const dirLight = new THREE.DirectionalLight(0xffffff,0.8);
-  dirLight.position.set(10, 20, 10);
+  //添加一个平行光
+  const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+  dirLight.position.set(0, 10, 5);
+  dirLight.castShadow = true; //光源投射阴影
   scene.add(dirLight);
+
   //  添加一个地面
   const groundGeo = new THREE.PlaneGeometry(200, 200);
   const groundMat = new THREE.MeshStandardMaterial({
     color: 0xcccccc,
   });
   const ground = new THREE.Mesh(groundGeo, groundMat);
-  ground.rotation.x = -Math.PI / 2;
+  ground.receiveShadow = true; //接收阴影
+  ground.rotation.x = -Math.PI / 2;//水平放置
   ground.position.y = -2;
   scene.add(ground);
 
@@ -55,6 +59,7 @@ const init = () => {
     metalness: 0.1,
   });
   const sphere = new THREE.Mesh(sphereGeo, sphereMat);
+  sphere.castShadow = true;//投射阴影
   sphere.position.y = 5;
   scene.add(sphere);
 
@@ -73,7 +78,7 @@ const init = () => {
     "position",
     new THREE.BufferAttribute(positions, 3)
   );
-  // 3，加载雪花纹理
+  // 加载雪花纹理
   const textureLoader = new THREE.TextureLoader();
   const snowFlakeTexture = textureLoader.load("/image/snowflake2.png");
 
@@ -136,9 +141,4 @@ onBeforeUnmount(() => {
   </VContainer>
 </template>
 <style scoped>
-.three-wrapper {
-  width: 100%;
-  height: calc(100vh - 200px); /* 调整高度以适应容器 */
-  overflow: hidden;
-}
 </style>
