@@ -7,14 +7,12 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { onMounted, ref, onBeforeUnmount } from "vue";
-import { GUI } from "three/addons/libs/lil-gui.module.min.js";
 import VContainer from "@/components/v-container/Container.vue";
 
 const threeRef = ref();
 let renderer = null;
 let scene = null;
 let controls = null;
-let gui = null;
 
 const init = () => {
   // 场景
@@ -80,13 +78,7 @@ const init = () => {
   const dirLightHelper = new THREE.DirectionalLightHelper(light, 1, 0xff0000); //参数1：光源，参数2：长度，参数3：颜色
   scene.add(dirLightHelper);
 
-  // 在页面上生成调试面板，动态调整对象属性
-  gui = new GUI();
-  const lightFolder = gui.addFolder("DirectionalLight Position");
-  lightFolder.add(light.position, "x", -20, 20);
-  lightFolder.add(light.position, "y", 0, 20);
-  lightFolder.add(light.position, "z", -20, 20);
-  lightFolder.open();
+
 
   // 用于相机交互控制，响应鼠标/触摸事件，实现旋转、缩放、平移等，让用户操控视角。
   controls = new OrbitControls(camera, renderer.domElement); //轨道控制

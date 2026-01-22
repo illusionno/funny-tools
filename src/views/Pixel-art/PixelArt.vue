@@ -1,5 +1,5 @@
 <template>
-  <VContainer title="图片转像素画">
+  <VContainer title="图片转像素画" :blog-link="route.query.blogLink as string">
     <div class="box-wrap flex flex-col gap-12">
       <div class="flex items-center justify-between">
         <VUpload @change="handleChanges" />
@@ -38,7 +38,8 @@ import PhExportDuotone from "~icons/ph/export-duotone";
 import VUpload from "@/components/v-upload/uploadIndex.vue";
 import VContainer from "@/components/v-container/Container.vue";
 import { fileToBase64, convertUrlToFile, exportImage } from "@/utils/common";
-
+import { useRoute } from "vue-router";
+const route = useRoute();
 const canvas = ref<HTMLCanvasElement | null>(null);
 const imgUrl = ref(Demo);
 const pixelSize = ref(10);
@@ -112,16 +113,3 @@ const pixelate = (
   }
 };
 </script>
-
-<style scoped lang="scss">
-:deep(.el-slider__bar) {
-  background-image: linear-gradient(
-    to right,
-    #b5e6f8,
-    #7cb2e8e6
-  ); /* Chrome 10-25, Safari 5.1-6 */
-}
-:deep(.el-button) {
-  background-color: #7cb2e8e6;
-}
-</style>

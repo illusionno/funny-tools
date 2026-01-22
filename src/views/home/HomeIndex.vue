@@ -16,7 +16,11 @@
           @mouseenter.stop="() => (isHover = true)"
           @mouseleave.self="() => (isHover = false)"
         >
-          <n-image class="image" :src="homeImg" preview-disabled />
+          <n-image
+            :class="['image', isHover || isBtnHover ? 'image-hover' : '']"
+            :src="homeImg"
+            preview-disabled
+          />
         </div>
 
         <!-- 右侧图片组 -->
@@ -31,13 +35,19 @@
       <h1 class="title animate__animated animate__rubberBand animate__infinite">
         Funny Tools
       </h1>
-      <div class="desc-text mt--20">✨发现有趣实用的小工具，让生活更美好~</div>
+      <div class="desc-text mt--48">
+        Three.js案例 | 实用好玩的小工具 | 学习收藏夹
+      </div>
       <div class="mt-30">
-        <StartBtn @click="() => router.push({ name: 'index' })"
-           @mouseenter.stop="() => (isHover = true)"
+        <StartBtn
+          @click="() => router.push({ name: 'index' })"
+          @mouseenter.stop="() => (isHover = true)"
           @mouseleave.self="() => (isHover = false)"
-          > 开始探索</StartBtn
+          @mouseenter="isBtnHover = true"
+          @mouseleave="isBtnHover = false"
         >
+          <i> 开始探索</i>
+        </StartBtn>
       </div>
     </div>
     <div class="wave"></div>
@@ -55,6 +65,7 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 const isHover = ref(false);
+const isBtnHover = ref(false);
 </script>
 
 <style scoped lang="scss">
@@ -136,6 +147,15 @@ const isHover = ref(false);
         height: 150px;
       }
     }
+    .image-hover {
+      transform: scale(1.1);
+      box-shadow: 0px 16px 48px 16px rgba(255, 255, 255, 0.1),
+        0px 12px 32px rgba(255, 255, 255, 0.15),
+        0px 8px 16px -8px rgba(255, 255, 255, 0.2);
+      animation: rotate 2s linear infinite;
+      cursor: pointer;
+      filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.5));
+    }
   }
 
   .side-images {
@@ -204,15 +224,15 @@ const isHover = ref(false);
   }
 
   .title {
-    font-family: "Platform";
-    font-size: 42px;
+    font-family: "Doko-Book", sans-serif;
+    font-size: 56px;
     text-align: center;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ff6b6b 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-size: 200% 200%;
-        animation: gradientShift 3s ease-in-out infinite;
+    animation: gradientShift 3s ease-in-out infinite;
     @media (max-width: 768px) {
       font-size: 32px;
     }
@@ -221,7 +241,10 @@ const isHover = ref(false);
   .desc-text {
     font-size: 18px;
     text-align: center;
-    color:#a0a6b1;
+    color: #a0a6b1;
+    font-family: "Source Han Serif SC", serif;
+
+    // font-style: italic;
     @media (max-width: 768px) {
       font-size: 16px;
     }

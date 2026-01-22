@@ -1,13 +1,13 @@
 <template>
   <div class="auto-wrap" ref="exportContent">
     <EpBack
-      class="hvr-sweep-to-top back-btn"
+      class="hvr-sweep-to-top back-btn-purple"
       @click="router.push({ name: 'index' })"
     />
     <div>
       <VTitleBar title="人生小格" />
-      <div class="flex flex-col gap-12">
-        <div class="box-wrap flex flex gap-16 justify-between">
+      <div class="box-wrap flex flex-col gap-12">
+        <div class="wrap-border flex flex gap-16 justify-between">
           <el-date-picker
             v-model="dateVal"
             type="date"
@@ -19,7 +19,7 @@
             @click="exportToImage"
           />
         </div>
-        <div v-if="dateData" class="box-wrap flex flex-col gap-12">
+        <div v-if="dateData" class=" wrap-border flex flex-col gap-12">
           <div>
             <div class="tag">已经过去了</div>
             <div class="list">
@@ -63,7 +63,7 @@
             </div>
           </div>
         </div>
-        <div v-if="dateData" class="box-wrap flex flex-col gap-12">
+        <div v-if="dateData" class="wrap-border flex flex-col gap-12">
           <div>
             <div class="tag">剩下的时间</div>
             <div class="list">
@@ -108,7 +108,7 @@
           </div>
         </div>
         <!-- 小格 -->
-        <div v-if="results" class="box-wrap">
+        <div v-if="results" class="wrap-border">
           <div class="">
             <div
               v-for="(item, index) in results.blockArr"
@@ -123,7 +123,7 @@
           </div>
         </div>
         <!-- 说明 -->
-        <div class="box-wrap flex flex-col gap-12">
+        <div class="wrap-border flex flex-col gap-12">
           <div class="flex flex-col gap-12">
             <div>参考了小程序<b> lifecount </b>而制作的网页版本</div>
             <div class="color-#aaa">假设我们的寿命是80岁,分为400个方块。</div>
@@ -350,4 +350,5 @@ const exportToImage = async () => {
   animation: flash ease 2s infinite;
   background-color: #4bc77f;
 }
+
 </style>

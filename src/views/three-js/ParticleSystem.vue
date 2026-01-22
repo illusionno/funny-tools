@@ -219,8 +219,8 @@ onBeforeUnmount(() => {
 });
 </script>
 <template>
-  <VContainer title="粒子系统">
-    <div ref="threeRef" class="three-wrapper"></div>
+  <VContainer title="粒子系统" >
+    <div ref="threeRef"></div>
   </VContainer>
 </template>
 <style scoped>

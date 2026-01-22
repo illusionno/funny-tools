@@ -6,26 +6,14 @@
         class="hvr-sweep-to-top back-btn"
         @click="router.push({ name: 'home' })"
       />
-      <a
-        href="https://github.com/illusionno/funny-tools"
-        target="_blank"
-        rel="noopener noreferrer"
-        style="
-          text-decoration: none;
-          color: #000;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        "
-      >
-        <img
-          class="w-44"
-          src="../../assets/imgs/github.png"
-          alt="GitHub"
-          style="cursor: pointer"
-        />
-        <span class="ml-4">代码仓库</span>
-      </a>
+      <div class="flex items-center gap-10 pink-border px-12 py-4">
+        <span class="link-icon" @click="goToGithub">
+          <MdiGithub class="w-40 h-40" />
+        </span>
+        <span class="link-icon" @click="goToCSDN">
+          <img :src="CSDNIcon" alt="CSDN" class="w-30 h-30" />
+        </span>
+      </div>
     </div>
 
     <!-- 主要内容区域 -->
@@ -34,13 +22,23 @@
       <div>
         <!-- 工具网格 -->
         <div v-for="item in allLists" :key="item.type">
-          <div class="tools-title">{{ item.type }}</div>
+          <div class="tools-title">
+            <span class="pink-border">
+              {{ item.type }}
+            </span>
+          </div>
           <div class="tools-grid mb-30">
             <div
               v-for="(subItem, i) in item.lists"
               :key="subItem.path || i"
               class="tool-card-wrapper"
-              @click="subItem.path && router.push({ name: subItem.path })"
+              @click="
+                subItem.path &&
+                  router.push({
+                    name: subItem.path,
+                    query: { blogLink: subItem.blogLink },
+                  })
+              "
             >
               <div class="tool-card" :class="{ disabled: !subItem.path }">
                 <div class="card-inner">
@@ -64,7 +62,7 @@
                     <h3 class="tool-title">{{ subItem.title }}</h3>
                     <div class="tool-status">
                       <el-tag
-                        v-if="subItem.path"
+                        v-if="subItem.path && subItem.img"
                         type="success"
                         effect="light"
                         size="small"
@@ -100,15 +98,15 @@
           <div class="panel-content">
             <div class="tip-item">
               <span class="tip-icon">💡</span>
-              <span>点击卡片即可使用工具</span>
+              <span>点击卡片即可使用</span>
             </div>
             <div class="tip-item">
               <span class="tip-icon">🚀</span>
-              <span>更多工具正在开发中</span>
+              <span>更多功能正在开发中</span>
             </div>
             <div class="tip-item">
               <span class="tip-icon">❤️</span>
-              <span>欢迎提出建议和反馈</span>
+              <span>希望你会喜欢 ~</span>
             </div>
           </div>
         </div>
@@ -117,16 +115,16 @@
         <div class="panel-card stats-card">
           <div class="panel-header">
             <el-icon class="panel-icon"><DataAnalysis /></el-icon>
-            <h3>工具统计</h3>
+            <h3>统计👻</h3>
           </div>
           <div class="stats-content">
             <div class="stat-item">
               <div class="stat-number">{{ availableToolsCount }}</div>
-              <div class="stat-label">可用工具</div>
+              <div class="stat-label">可用</div>
             </div>
             <div class="stat-item">
               <div class="stat-number">{{ totalToolsCount }}</div>
-              <div class="stat-label">总计工具</div>
+              <div class="stat-label">总计</div>
             </div>
           </div>
         </div>
@@ -178,6 +176,19 @@
             </div>
           </div>
         </div>
+
+        <!-- chatAi 按钮 -->
+        <el-tooltip
+          effect="dark"
+          content="我是AI Chat，快来陪我聊天叭~"
+          placement="top"
+        >
+          <div class="chat-ai-button" @click="() => (chatVisible = true)">
+            <MdiRobotExcitedOutline />
+          </div>
+        </el-tooltip>
+
+        <ChatAi v-model="chatVisible" />
       </div>
     </div>
   </div>
@@ -185,26 +196,32 @@
 
 <script setup lang="ts">
 import EpBack from "~icons/ep/back";
+import MdiGithub from "~icons/mdi/github";
 import {
   ArrowUp,
   InfoFilled,
   DataAnalysis,
   Refresh,
 } from "@element-plus/icons-vue";
+import ChatAi from "../chat-ai/chatAi.vue";
 import { useRouter } from "vue-router";
 import { computed, onMounted } from "vue";
 import * as Img from "./export";
 import { ElMessage } from "element-plus";
+import CSDNIcon from "@/assets/icon/csdn.svg";
+import { pa } from "element-plus/es/locale/index.mjs";
 const router = useRouter();
 const dailyText = ref("");
+const chatVisible = ref(false);
 const allLists = [
   {
-    type: "Three.js案例 ｡◕‿◕｡",
+    type: "Three.js案例🐰",
     lists: [
       {
         title: "添加阴影",
         img: Img.shadow,
         path: "three-shadow",
+        blogLink: "https://blog.csdn.net/qq_52395343/article/details/150418540",
       },
       {
         title: "纹理贴图",
@@ -219,7 +236,8 @@ const allLists = [
       {
         title: "PBR基于物理材质的渲染",
         img: Img.prb,
-        path: "three-pbr",
+        path: "L:three-pbr",
+        blogLink: "https://blog.csdn.net/qq_52395343/article/details/151049291",
       },
       {
         title: "雾化",
@@ -230,26 +248,45 @@ const allLists = [
         title: "粒子系统",
         img: Img.particle,
         path: "three-particle",
+        blogLink: "https://blog.csdn.net/qq_52395343/article/details/151049291",
       },
       {
         title: "半球光",
         img: Img.himisphere,
         path: "three-hemisphere-light",
+        blogLink: "https://blog.csdn.net/qq_52395343/article/details/151041651",
       },
       {
         title: "水波纹与天空",
         img: Img.water,
         path: "three-water",
+        blogLink: "https://blog.csdn.net/qq_52395343/article/details/150982975",
+      },
+      {
+        title: "点击交互",
+        img: "",
+        path: "three-raycaster",
+      },
+      {
+        title: "3D文字",
+        img: Img.font,
+        path: "three-3d-text",
+      },
+      {
+        title: "几何体阵列",
+        img: "",
+        path: "three-multi-geometry",
       },
     ],
   },
   {
-    type: "一些实用的 (´･ω･`)",
+    type: "一些实用的🔆",
     lists: [
       {
         title: "图片转像素画",
         img: Img.pixel,
         path: "pixel-art",
+        blogLink: "https://blog.csdn.net/qq_52395343/article/details/138932835",
       },
       {
         title: "颜色识别",
@@ -260,6 +297,7 @@ const allLists = [
         title: "IP地址计算",
         img: Img.ip,
         path: "ip-compute",
+        blogLink: "https://blog.csdn.net/qq_52395343/article/details/135483246",
       },
       {
         title: "HTML元素查看",
@@ -267,24 +305,49 @@ const allLists = [
         path: "dom-display",
       },
       {
-        title: "文本处理器",
-        img: Img.text,
-        path: "", // 开发中
-      },
-      {
         title: "二维码生成",
         img: Img.qrcode,
-        path: "", // 开发中
+        path: "qrcode-generator",
       },
+      // {
+      //   title: "代码对比",
+      //   img: "",
+      //   path: "code-compare", // 开发中
+      // },
       {
         title: "Linux常见命令查询",
         img: Img.linux,
         path: "linux-command",
       },
+      {
+        title: "uuid生成",
+        img: "",
+        path: "uuid-generate",
+      },
+      {
+        title: "JSON格式化",
+        img: "",
+        path: "json-format",
+      },
+      {
+        title: "中文转拼音/简繁体转换",
+        img: "",
+        path: "chinese-converter",
+      },
+      {
+        title: "图片加水印",
+        img: "",
+        path: "watermark",
+      },
+      {
+        title: "Markdown编辑器",
+        img: "",
+        path: "markdown-editor",
+      },
     ],
   },
   {
-    type: "一些好玩的 ๑乛◡乛๑",
+    type: "一些好玩的👻",
     lists: [
       {
         title: "人生小格",
@@ -295,6 +358,51 @@ const allLists = [
         title: "每日运势分析",
         img: Img.fortune,
         path: "daily-fortune",
+      },
+      {
+        title: "今天吃什么？",
+        img: Img.eat,
+        path: "what-eat",
+      },
+      {
+        title: "倒数日/纪念日生成器",
+        img: Img.anniversary,
+        path: "anniversary",
+      },
+      {
+        title: "房贷/个税计算器",
+        img: "",
+        path: "tax-compute",
+      },
+      {
+        title: "打字速度测试",
+        img: "",
+        path: "tax-compute",
+      },
+    ],
+  },
+  {
+    type: "我的收藏夹⭐",
+    lists: [
+      {
+        title: "前端学习网站",
+        img: Img.FrontEnd,
+        path: "front-end-sites",
+      },
+      {
+        title: "提升审美灵感",
+        img: Img.aesthetic,
+        path: "aesthetic-inspiration",
+      },
+      {
+        title: "UI/UX学习资源",
+        img: Img.life,
+        path: "ui-ux-learning",
+      },
+      {
+        title: "小语种学习",
+        img: Img.language,
+        path: "small-language-learning",
       },
     ],
   },
@@ -361,7 +469,7 @@ const selectMood = (mood: any) => {
     JSON.stringify({
       mood: mood,
       date: new Date().toDateString(),
-    })
+    }),
   );
 };
 const dailyTexts = [
@@ -391,20 +499,62 @@ const availableToolsCount = computed(() => {
 const totalToolsCount = computed(() => {
   return allLists.reduce((count, category) => count + category.lists.length, 0);
 });
+
+const goToGithub = () => {
+  window.open("https://github.com/zhaoyu1234567890/tool-box", "_blank");
+};
+
+const goToCSDN = () => {
+  window.open("https://blog.csdn.net/qq_52395343?type=blog", "_blank");
+};
 </script>
 
 <style scoped lang="scss">
 .index-wrap {
   min-height: 100vh;
-  background: linear-gradient(135deg, #8da0f3 0%, #764ba2 100%);
+  // 粉色小格子
+  background: repeating-linear-gradient(
+      0deg,
+      rgba(255, 192, 203, 0.2) 0px,
+      rgba(255, 192, 203, 0.2) 12px,
+      rgba(255, 192, 203, 0) 12px,
+      rgba(255, 192, 203, 0) 24px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 192, 203, 0.2) 0px,
+      rgba(255, 192, 203, 0.2) 12px,
+      rgba(255, 192, 203, 0) 12px,
+      rgba(255, 192, 203, 0) 24px
+    );
 
-  // position: relative;
   padding: 20px;
   overflow-x: hidden;
   @media (max-width: 768px) {
     padding: 15px;
   }
+  @media (max-width: 480px) {
+    padding: 10px;
+  }
+  .flex.justify-between.items-center {
+    @media (max-width: 480px) {
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+    }
+  }
 
+  .link-icon {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    &:hover {
+      transform: scale(1.1);
+    }
+    @media (max-width: 480px) {
+      font-size: 14px;
+      align-self: flex-end;
+    }
+  }
   // 添加背景装饰
   &::before {
     content: "";
@@ -449,6 +599,10 @@ const totalToolsCount = computed(() => {
     grid-template-columns: 1fr;
     gap: 20px;
     margin-top: 60px;
+  }
+  @media (max-width: 480px) {
+    gap: 15px;
+    margin-top: 20px;
   }
 }
 
@@ -506,39 +660,44 @@ const totalToolsCount = computed(() => {
   text-align: center;
   font-size: 24px;
   font-weight: 600;
-  color: #fff;
-  background: none;
-  background-color: rgba(255, 255, 255, 0.2);
-  padding: 12px;
-  border-radius: 16px;
   margin-bottom: 16px;
+  span {
+    padding: 12px 44px;
+  }
+  @media (max-width: 768px) {
+    font-size: 20px;
+    padding: 10px;
+  }
+  @media (max-width: 480px) {
+    font-size: 18px;
+    padding: 8px;
+    margin-bottom: 12px;
+  }
 }
 
-// 工具网格
 .tools-grid {
+  padding: 24px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); // 调小最小宽度
+  gap: 26px; // 间距也可适当缩小
   justify-items: center;
   margin-top: 12px;
 
   @media (max-width: 640px) {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 15px;
   }
 
   @media (max-width: 480px) {
     grid-template-columns: 1fr;
-    gap: 15px;
+    gap: 10px;
   }
 }
 
-// 工具卡片
 .tool-card-wrapper {
   width: 100%;
-  max-width: 300px;
+  // max-width: 200px; // 卡片最大宽度调小
 }
-
 .tool-card {
   background: white;
   border-radius: 20px;
@@ -579,7 +738,8 @@ const totalToolsCount = computed(() => {
 // 图片区域
 .image-wrapper {
   position: relative;
-  height: 160px;
+  aspect-ratio: 4/3; // 兼容4:3比例
+  height: auto; // 高度自适应
   overflow: hidden;
 
   .tool-image {
@@ -608,12 +768,10 @@ const totalToolsCount = computed(() => {
     }
   }
 }
-
 // 卡片内容
 .card-content {
   padding: 20px;
   text-align: center;
-
   .tool-title {
     font-size: 1.1rem;
     font-weight: 600;
@@ -662,7 +820,7 @@ const totalToolsCount = computed(() => {
 
     .panel-icon {
       font-size: 20px;
-      color: #667eea;
+      color: var(--blue-middle-color);
     }
 
     h3 {
@@ -703,13 +861,13 @@ const totalToolsCount = computed(() => {
     .stat-item {
       text-align: center;
       padding: 15px;
-      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      background: linear-gradient(135deg, #f7f8fb 0%, #e5eefe 100%);
       border-radius: 12px;
 
       .stat-number {
         font-size: 1.8rem;
         font-weight: 700;
-        color: #667eea;
+        color: #83a7de;
         margin-bottom: 5px;
       }
 
@@ -808,5 +966,25 @@ const totalToolsCount = computed(() => {
 .daily-text {
   font-family: "楷体";
   font-size: 20px;
+}
+.chat-ai-button {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  font-size: 32px;
+  background: linear-gradient(135deg, #fff, #bfbfbf);
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(132, 132, 132, 0.15);
+  z-index: 999;
+  cursor: pointer;
+  box-shadow: 0 6px 16px #9f9e9e;
+  transition: all 0.3s ease;
+  &:hover {
+    transform: rotate(30deg);
+  }
 }
 </style>

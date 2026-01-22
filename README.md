@@ -1,60 +1,154 @@
-# Funny Tools
+# 🎨 Funny Tools - 有趣的前端工具集
 
-It is still going on... 未完待续...
+[![Vue](https://img.shields.io/badge/Vue-3.4.35-4FC08D?style=flat&logo=vue.js)](https://vuejs.org/)
+[![Vite](https://img.shields.io/badge/Vite-5.4.0-646CFF?style=flat&logo=vite)](https://vitejs.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
+[![UnoCSS](https://img.shields.io/badge/UnoCSS-0.61.9-4285F4?style=flat&logo=css3)](https://unocss.dev/)
 
-## Front page
+一个基于 Vue 3 + TypeScript + Vite 构建的有趣前端工具集合，包含多个实用的在线工具和炫酷的演示效果。
 
-![alt text](/public/imgs/home.png)
+## ✨ 功能特性
 
-## Home
+### 🎮 核心工具
 
-![alt text](/public/imgs/home1.png)
-![alt text](/public/imgs/home2.png)
-![alt text](/public/imgs/home3.png)
+- **🎨 像素画转换器** - 将普通图片转换为像素风格，支持自定义像素大小
+- **📊 人生小格** - 可视化人生时间轴，每个格子代表一周
+- **🌈 颜色识别工具** - 智能识别图片中的主要颜色，支持调色板生成
+- **🔍 DOM元素查看器** - 类似开发者工具的DOM结构查看器
+- **💡 代码高亮显示** - 支持多种编程语言的代码高亮
+- **📊 代码比较工具** - 代码差异对比，支持语法高亮
+- **📱 二维码生成器** - 快速生成各种类型的二维码
+- **🖥️ IP计算器** - 网络IP地址计算和子网划分工具
+- **⚡ Linux命令工具** - Linux命令快速查询和学习
 
-## Three.js案例
+### 🎪 3D演示
 
-### 1.添加阴影
-![alt text](image.png)
-✨相关博客：
-### 2.纹理贴图
-![alt text](image-1.png)
+基于 Three.js 构建的多种3D效果演示：
+- **📝 3D文字效果** - 立体文字渲染
+- **🌫️ 雾效果** - 大气雾效果模拟
+- **💡 半球光照** - 自然光照效果
+- **🎲 多几何体** - 复杂3D模型展示
+- **✨ 粒子系统** - 动态粒子效果
+- **🔮 PBR材质** - 基于物理的渲染材质
+- **🎯 光线投射** - 交互式3D拾取
+- **🌑 阴影效果** - 真实阴影渲染
+- **🌌 天空盒** - 360度全景背景
+- **🌊 水面效果** - 真实水波纹理
+- **📦 纹理贴图** - 材质纹理应用
 
-### 3.天空盒
-![alt text](image-2.png)
+### 🎭 动效演示
 
-### 4.PBR基于物理材质的渲染
-![alt text](image-3.png)
-### 5.雾化
+- **🖱️ 跟随鼠标的渐变按钮** - 交互式按钮效果
+- **⚡ 闪烁渐变背景** - 动态背景效果
+- **🎯 图片悬停文字聚焦** - 图片交互效果
 
-### 6.粒子系统
-### 7.半球光
-### 8.水波纹与天空
+## 🛠️ 技术栈
 
-## 一些实用的小工具
-### 像素画转像素画
+### 前端框架
+- **Vue 3** - 渐进式JavaScript框架
+- **TypeScript** - 类型安全的JavaScript
+- **Vue Router 4** - 官方路由管理器
 
-![alt text](/public/imgs/image-2.png)
-![alt text](/public/imgs/20240930_154610.gif)
-✨相关博客：[canvas 实现图片像素化（可调整像素大小、替换图片）](https://blog.csdn.net/qq_52395343/article/details/141220928?ops_request_misc=%257B%2522request%255Fid%2522%253A%252223727767-8231-460F-81B0-456A496A68BF%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fblog.%2522%257D&request_id=23727767-8231-460F-81B0-456A496A68BF&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~first_rank_ecpm_v1~rank_v31_ecpm-1-141220928-null-null.nonecase&utm_term=%E5%83%8F%E7%B4%A0%E7%94%BB&spm=1018.2226.3001.4450)
+### 构建工具
+- **Vite** - 极速的前端构建工具
+- **UnoCSS** - 原子化CSS引擎
 
-## 一些好玩的
+### UI组件库
+- **Element Plus** - 基于Vue 3的桌面端组件库
+- **Naive UI** - 简洁优雅的Vue 3组件库
 
+### 核心库
+- **Three.js** - 3D图形渲染库
+- **Monaco Editor** - VS Code编辑器核心
+- **Highlight.js** - 代码语法高亮
+- **html-dom-parser** - HTML DOM解析器
+- **ColorThief** - 图片颜色提取
+- **html2canvas** - HTML转Canvas
+- **QRCode** - 二维码生成
 
-### 人生小格
-![alt text](/public/imgs/image-3.png)
-![alt text](/public/imgs/20240930_155718.gif)
+### 开发工具
+- **unplugin-auto-import** - 自动导入API
+- **unplugin-vue-components** - 自动导入组件
+- **unplugin-icons** - 图标自动导入
 
-### 颜色识别
-![alt text](/public/imgs/image-4.png)
-![alt text](/public/imgs/20240930_160011.gif)
+## 🚀 快速开始
 
-## HTML元素查看
-### DOM元素查看
-类似于开发者工具中的元素查看, 但是只能查看元素的DOM结构，可以对元素节点进行展开和折叠。
-实现过程：使用[html-dom-parser](https://github.com/remarkablemark/html-dom-parser)库解析html，然后使用递归遍历 JavaScript 对象，生成嵌套的节点结构。
-![alt text](/public/imgs/image-5.png)
+### 环境要求
+- Node.js 16+ 
+- pnpm (推荐) 或 npm
 
-### 代码高亮显示
-使用hightlight.js实现代码高亮显示，支持多种编程语言。
-![alt text](/public/imgs/image-6.png)
+### 安装依赖
+```bash
+# 使用 pnpm (推荐)
+pnpm install
+
+# 或使用 npm
+npm install
+```
+
+### 开发模式
+```bash
+# 启动开发服务器
+pnpm dev
+
+# 或
+npm run dev
+```
+
+访问地址查看应用
+
+### 构建部署
+```bash
+# 构建生产版本
+pnpm build
+
+# 预览构建结果
+pnpm preview
+```
+
+## 📁 项目结构
+src/
+├── components/ # 公共组件
+│ ├── v-container/ # 容器组件
+│ ├── v-element-parse/ # DOM元素解析组件
+│ ├── v-title-bar/ # 标题栏组件
+│ └── v-upload/ # 上传组件
+├── views/ # 页面视图
+│ ├── Pixel-art/ # 像素画转换
+│ ├── life-grid/ # 人生小格
+│ ├── color-identify/ # 颜色识别
+│ ├── dom-display/ # DOM显示
+│ ├── code-compare/ # 代码比较
+│ ├── three-js/ # Three.js演示
+│ ├── qrcode-generator/# 二维码生成
+│ ├── ip-compute/ # IP计算
+│ ├── linux-command/ # Linux命令
+│ └── demo/ # 演示页面
+├── assets/ # 静态资源
+├── router/ # 路由配置
+└── utils/ # 工具函数
+
+## 🤝 贡献指南
+
+欢迎提交Issue和Pull Request！
+
+1. Fork 本仓库
+2. 创建特性分支 (`git checkout -b feature/Funny-Tools`)
+3. 提交更改 (`git commit -m 'Add some Funny-Tools'`)
+4. 推送到分支 (`git push origin feature/Funny-Tools`)
+5. 开启Pull Request
+
+## 📄 许可证
+
+本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情
+
+## 🙏 致谢
+
+- [Vue.js](https://vuejs.org/) - 渐进式JavaScript框架
+- [Three.js](https://threejs.org/) - 3D图形库
+- [Element Plus](https://element-plus.org/) - Vue 3组件库
+- [UnoCSS](https://unocss.dev/) - 原子化CSS引擎
+
+---
+
+⭐ 如果这个项目对你有帮助，请给它一个星标！

@@ -1,10 +1,6 @@
 <template>
-  <div class="auto-wrap">
-    <EpBack
-      class="hvr-sweep-to-top back-btn"
-      @click="router.push({ name: 'index' })"
-    />
-    <VTitleBar title="颜色识别" />
+  <VContainer title="颜色识别">
+
     <div class="box-wrap flex flex-col gap-12">
       <el-input
         v-model="colorVal"
@@ -55,7 +51,7 @@
         </div>
       </div>
     </div>
-  </div>
+</VContainer>
 </template>
 <script setup lang="ts">
 import { useRouter } from "vue-router";
@@ -63,7 +59,7 @@ import { Slider } from "@ckpack/vue-color";
 import TinyColor from "tinycolor2";
 import { ElNotification } from "element-plus";
 import VUpload from "@/components/v-upload/uploadIndex.vue";
-import VTitleBar from "@/components/v-title-bar/TitleBar.vue";
+import VContainer from "@/components/v-container/Container.vue";
 
 import Demo from "@/assets/imgs/demo.jpg";
 import ColorThief from "colorthief";

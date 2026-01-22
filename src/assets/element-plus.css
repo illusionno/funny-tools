@@ -1,0 +1,17 @@
+:root{
+  --purple-color:#807ff1;
+}
+
+.el-slider{
+    --el-slider-main-bg-color:var(--purple-color) !important;
+  }
+  .el-checkbox__input.is-checked+.el-checkbox__label{
+    color:var(--purple-color) !important;
+  }
+  .el-checkbox__input.is-checked .el-checkbox__inner{
+    background-color:var(--purple-color) !important;
+    border-color:var(--purple-color) !important;
+  }
+  .el-button--primary{
+    background-color:var(--purple-color) !important;
+  }

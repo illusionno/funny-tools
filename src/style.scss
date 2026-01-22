@@ -1,36 +1,55 @@
 .auto-wrap {
-  min-height: 100vh;
-  padding   : 24px;
-  position  : relative;
-  overflow  : hidden;
-  background-image: linear-gradient(45deg,
-      #cefffe 0%,
-      #dfdcfc 48%,
-      #f1d1d5 100%);
+  padding      : 24px;
+  position     : relative;
+  width        : 100%;
+  min-height   : 100vh;
+  overflow     : hidden;
+  /* 淡紫色小格子 */
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(186, 174, 217, 0.2) 0px,
+    rgba(205, 189, 251, 0.2) 12px,
+    rgba(200, 180, 255, 0) 12px,
+    rgba(200, 180, 255, 0) 24px
+  ),
+  repeating-linear-gradient(
+    90deg,
+    rgba(186, 174, 217, 0.2) 0px,
+    rgba(205, 189, 251, 0.2) 12px,
+    rgba(200, 180, 255, 0) 12px,
+    rgba(200, 180, 255, 0) 24px
+  );
+
+/* 定义全局主题色*/
+:root {
+  --pink-light-color : pink;
+  --pink-middle-color: #ec8fbe;
+  --blue-middle-color: #7fa8e5;
 }
 
+
 .box-wrap {
-  margin          : auto;
-  padding         : 24px;
-  backdrop-filter : blur(10px);
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius   : 16px;
-  width           : 1200px;
+  width          : 1200px;
+  margin         : 0 auto;
+  padding        : 36px;
+  backdrop-filter: blur(14px) saturate(150%);
+  border-radius  : 24px;
+
+  /* 轻微描边让玻璃有边界感 */
+  border    : 1px solid rgba(255, 255, 255, 0.064);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  margin    : 40px auto;
 }
 
 .back-btn {
-  /* 超可爱圆形 */
   width        : 42px;
   height       : 42px;
   border-radius: 50%;
   border       : 3px solid #ffb3d9;
   cursor       : pointer;
-
-  /* 甜美配色 */
   background: linear-gradient(45deg, #ffeaa7 0%, #fab1a0 50%, #ff7675 100%);
-  color     : #e656d3;
+  color     : rgb(243, 119, 139);
 
-  /* 毛绒绒的阴影 */
   box-shadow:
     0 0 0 4px rgba(255, 179, 217, 0.3),
     0 6px 20px rgba(255, 179, 217, 0.4);
@@ -55,6 +74,62 @@
     0 10px 30px rgba(255, 179, 217, 0.6);
   animation: wiggle 0.5s ease-in-out;
 }
+
+.back-btn-purple{
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 3px solid #d3b8ff; /* 淡紫色描边 */
+
+  cursor: pointer;
+
+  /* 柔和淡紫渐变 */
+  background: linear-gradient(
+    45deg,
+    #f3e9ff 0%,
+    #d8c6ff 50%,
+    #bfa5ff 100%
+  );
+
+  color: #8a63d2; /* 字体深紫色，清晰 */
+
+  /* 柔紫光晕 */
+  box-shadow:
+    0 0 0 4px rgba(211, 184, 255, 0.3),
+    0 6px 20px rgba(211, 184, 255, 0.45);
+
+  /* Q弹效果 */
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 14px;
+  font-weight: bold;
+
+  margin: 16px;
+  position: relative;
+}
+
+.back-btn-purple:hover {
+  transform: scale(1.15) rotate(10deg);
+
+  /* hover 变成反向渐变，更亮一些 */
+  background: linear-gradient(
+    45deg,
+    #bfa5ff 0%,
+    #d8c6ff 50%,
+    #f3e9ff 100%
+  );
+
+  box-shadow:
+    0 0 0 6px rgba(211, 184, 255, 0.45),
+    0 10px 30px rgba(211, 184, 255, 0.6);
+
+  animation: wiggle 0.5s ease-in-out;
+}
+
 
 @keyframes wiggle {
 
@@ -112,8 +187,8 @@
 
 /* 文字的3D效果 */
 .threeD {
-  color    : #fff;
-  font-size: 46px;
+  color         : #fff;
+  font-size     : 46px;
   font-weight   : 600;
   /* 字符之间的间距 */
   letter-spacing: 2px;
@@ -165,7 +240,7 @@
 .lil-gui,
 .lil-gui .folder,
 .lil-gui .controller {
-    /* 半透明黑色 */
+  /* 半透明黑色 */
   background             : rgba(30, 30, 30, 0.2) !important;
   /*filter作用于元素自身，而backdrop-filter 不模糊元素自身内容，而是模糊透过该元素看到的背景*/
   backdrop-filter        : blur(10px);
@@ -203,7 +278,45 @@
 }
 
 .three-wrapper {
-  width: 100%;
-  height: calc(100vh - 200px); /* 调整高度以适应容器 */
+  width   : 100%;
+  height  : calc(100vh - 200px);
+  /* 调整高度以适应容器 */
   overflow: hidden;
+}
+@mixin border($color) {
+  // display      : inline-block;
+  border-radius: 16px;
+  border       : 4px dashed $color;
+  cursor: pointer;
+}
+
+.pink-border {
+  @include border(rgba(181, 12, 40, 0.2));
+}
+.purple-border {
+  @include border(#c1a0f6);
+}
+
+.el-tag.el-tag--success {
+  background-color: #3e3e3e !important;
+  color:whitesmoke;
+  padding         :10px !important;
+  font-style: italic;
+}
+}
+
+// 内容页工具边框
+.wrap-border{
+  background-color: #ece4f9;
+  border: 1px solid #8b8888;
+  padding: 8px;
+  border-radius: 12px;
+}
+// 轻微放大动画
+.zoom-in{
+  cursor: pointer;
+    transition: all 0.3s ease;
+    &:hover {
+      transform: scale(1.1);
+    }
 }
