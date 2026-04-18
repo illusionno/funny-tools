@@ -176,10 +176,6 @@ const routes = [
     path:'/ui-ux-learning',
     name:'ui-ux-learning',
     component: () => import("@/views/site-collection/UiUx.vue"),
-  },{
-    path:'/small-language-learning',
-    name:'small-language-learning',
-    component: () => import("@/views/site-collection/SmallLanguage.vue"),
   }
 ];
 const router = createRouter({

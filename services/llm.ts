@@ -1,7 +1,6 @@
 // services/llm.ts
 import { parseSSE } from "@/utils/sse";
-const API_URL = "https://api.siliconflow.cn/v1/chat/completions";
-const API_KEY = import.meta.env.VITE_API_KEY;
+const API_URL = import.meta.env.VITE_API_URL || "/api/chat";
 
 /**
  * 支持 signal 参数用于中断流式请求
@@ -20,12 +19,10 @@ export async function streamChatCompletion(
   }) => void,
   options?: { signal?: AbortSignal }
 ) {
-  console.log(model, "aa");
   const response = await fetch(API_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${API_KEY}`,
     },
     body: JSON.stringify({
       model,
@@ -36,8 +33,15 @@ export async function streamChatCompletion(
     // 可以让fetch主动中断请求
     signal: options?.signal, //将 signal 传递给 fetch
   });
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(errorText || `请求失败: ${response.status}`);
+  }
+  if (!response.body) {
+    throw new Error("服务未返回流数据");
+  }
   // 获取HTTP响应的可读流
-  const reader = response.body!.getReader();
+  const reader = response.body.getReader();
   // 创建UTF-8解码器
   const decoder = new TextDecoder("utf-8");
 

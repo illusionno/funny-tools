@@ -13,6 +13,9 @@ import skybox from "@/assets/imgs/skybox.png";
 import prb from "@/assets/imgs/prb.png";
 import font from "@/assets/imgs/3d_text.png";
 import anniversary from "@/assets/cover/anniversary.png";
+import tax from "@/assets/cover/tax.png";
+import typing from "@/assets/cover/typing.png";
+import uuid from "@/assets/cover/uuid.png";
 
 import frog from "@/assets/imgs/frog.png";
 import himisphere from "@/assets/imgs/himisphere.png";
@@ -46,5 +49,7 @@ export {
   aesthetic,
   eat,
   language,
-  anniversary
+  anniversary,
+  tax,
+  typing
 };

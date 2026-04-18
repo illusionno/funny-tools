@@ -5,7 +5,7 @@ import "highlight.js/styles/github.css";
 import { CaretRight } from "@element-plus/icons-vue";
 import { streamChatCompletion } from "../../../services/llm";
 import LetsIconsStop from "~icons/lets-icons/stop";
-import { ElMessage ,ElMessageBox} from 'element-plus'
+import { ElMessage, ElMessageBox } from "element-plus";
 
 const visible = defineModel({ default: false });
 const input = ref("");
@@ -17,22 +17,37 @@ const messages = ref([
 ]);
 
 const modelOptions = [
-  "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
-  "tencent/Hunyuan-MT-7B",
-  "Qwen/Qwen2.5-Coder-7B-Instruct",
-  "internlm/internlm2_5-7b-chat",
+  "deepseek-r1",
+  "deepseek-v3.1",
+  "deepseek-r1-distill-qwen-7b",
+  "MiniMax-M2.5",
+  "kimi-k2.5",
+  "kimi-k2-thinking",
+  "qwen3.6-plus",
+  "qwen3.6-flash",
+  "qwen3.5-plus",
 ];
 const modelName = ref(modelOptions[0]);
 
 const modelDescriptions = {
-  "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B":
-    "DeepSeek推出的基于Qwen3-8B优化的推理增强模型，专注于数学和推理任务",
-  "tencent/Hunyuan-MT-7B":
-    "腾讯混元团队开发的7B多语言翻译模型，支持多种语言对翻译",
-  "Qwen/Qwen2.5-Coder-7B-Instruct":
-    "通义千问团队开发的7B代码生成专用模型，针对编程任务进行指令优化",
-  "internlm/internlm2_5-7b-chat":
-    "上海AI实验室推出的7B对话优化模型，具备较强的中文对话和理解能力",
+  "deepseek-r1":
+    "DeepSeek 首代推理模型，擅长数学、代码和逻辑推理，通过强化学习训练，会展示详细思考过程。",
+  "deepseek-v3.1":
+    "DeepSeek 通用基础模型（671B MoE），响应快速，适合日常对话、知识问答和文本创作。",
+  "deepseek-r1-distill-qwen-7b":
+    "从 DeepSeek-R1 蒸馏到 Qwen-7B 的小型推理模型，7B 参数，适合低资源本地部署，保留较强推理能力。",
+  "qwen3.6-plus":
+    "通义千问 3.6 系列的高性能版（推测为 Qwen2.5-Plus 后续版本），通用能力强，适合复杂任务。",
+  "qwen3.6-flash":
+    "通义千问 3.6 系列的轻量快速版，延迟低、成本低，适合实时交互和简单问答。",
+  "qwen3.5-plus":
+    "通义千问 3.5 系列的高性能版，平衡能力与效率，支持长上下文（如 1M tokens）。",
+  "MiniMax-M2.5":
+    "MiniMax 推出的 M2.5 模型，综合性能提升，支持 1M 上下文，擅长中英文和复杂指令。",
+  "kimi-k2.5":
+    "Moonshot AI 的 Kimi K2.5 基础模型，长上下文能力强（原生 1M+），适合文档分析和长文本处理。",
+  "kimi-k2-thinking":
+    "Kimi K2.5 的推理增强版本，类似 DeepSeek-R1，展示思维链，适合数学、逻辑和深度分析。",
 };
 const modelDescription = computed(() => {
   return modelDescriptions[modelName.value] || "通用大语言模型";
@@ -65,18 +80,17 @@ const renderMarkdown = (text) => {
 };
 
 // -----------滑动窗口实现上下文管理---------------
-const MAX_HISTORY = 15;//只保留最近15轮对话
+const MAX_HISTORY = 15; //只保留最近15轮对话
 const getContextMessages = () => {
   if (!messages.value?.length) return [];
-  
-  const systemMsgs = messages.value.filter(m => m.role === 'system');
-  const conversationMsgs = messages.value.filter(m => m.role !== 'system');
-  
+
+  const systemMsgs = messages.value.filter((m) => m.role === "system");
+  const conversationMsgs = messages.value.filter((m) => m.role !== "system");
+
   // 只保留最近 N*2 条对话
   const recentMsgs = conversationMsgs.slice(-MAX_HISTORY * 2);
   return [...systemMsgs, ...recentMsgs];
 };
-
 
 // 新增一个通用的流式回复函数
 const streamReply = async () => {
@@ -227,7 +241,7 @@ const mergeIfContinuous = (newInput) => {
 // 发送消息
 const sendMessage = async () => {
   // 1. 基础验证
-  console.log(1,input.value.trim())
+  console.log(1, input.value.trim());
   if (!input.value.trim()) return;
 
   // 2. 清洗输入
@@ -237,20 +251,26 @@ const sendMessage = async () => {
   const lengthCheck = validateLength(cleanedInput);
   if (!lengthCheck.valid) {
     // 提示用户并选择是否截断
-    ElMessageBox.confirm(`${lengthCheck.error}\n是否自动截断发送？`, '长度超限', {
-      confirmButtonText: '是',
-      cancelButtonText: '否',
-    }).then(() => {
-      cleanedInput = lengthCheck.truncated;
-    }).catch(() => {
-      return;
-    });
+    ElMessageBox.confirm(
+      `${lengthCheck.error}\n是否自动截断发送？`,
+      "长度超限",
+      {
+        confirmButtonText: "是",
+        cancelButtonText: "否",
+      }
+    )
+      .then(() => {
+        cleanedInput = lengthCheck.truncated;
+      })
+      .catch(() => {
+        return;
+      });
   }
 
   // 4. Prompt injection 检测
   const injectionCheck = detectInjection(cleanedInput);
   if (injectionCheck.detected) {
-    ElMessage.error(`安全警告: ${injectionCheck.message}`)
+    ElMessage.error(`安全警告: ${injectionCheck.message}`);
     return;
   }
 
@@ -259,7 +279,7 @@ const sendMessage = async () => {
   if (mergeResult.merged) {
     console.log("合并了连续输入");
   }
-console.log(cleanedInput,'cleanedInput')
+  console.log(cleanedInput, "cleanedInput");
   // 6. 添加到消息列表
   messages.value.push({
     role: "user",
@@ -274,7 +294,7 @@ console.log(cleanedInput,'cleanedInput')
   try {
     await streamReply();
   } catch (error) {
-ElMessage.error(`消息发送失败: ${error.message}`)
+    ElMessage.error(`消息发送失败: ${error.message}`);
   }
 };
 // 额外的：内容过滤（针对敏感词等）
@@ -312,7 +332,6 @@ const sendSummary = async () => {
   input.value = "";
   await streamReply();
 };
-
 </script>
 <template>
   <div>
@@ -382,7 +401,6 @@ const sendSummary = async () => {
           @keydown.enter="sendMessage"
           :disabled="isLoading"
         />
-<!--  -->
         <span
           @click="sendSummary"
           :disabled="isLoading || !input.trim()"

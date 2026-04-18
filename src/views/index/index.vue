@@ -371,13 +371,13 @@ const allLists = [
       },
       {
         title: "房贷/个税计算器",
-        img: "",
+        img:Img.tax,
         path: "tax-compute",
       },
       {
         title: "打字速度测试",
-        img: "",
-        path: "tax-compute",
+        img: Img.typing,
+        path: "typing-speed",
       },
     ],
   },
@@ -398,11 +398,6 @@ const allLists = [
         title: "UI/UX学习资源",
         img: Img.life,
         path: "ui-ux-learning",
-      },
-      {
-        title: "小语种学习",
-        img: Img.language,
-        path: "small-language-learning",
       },
     ],
   },

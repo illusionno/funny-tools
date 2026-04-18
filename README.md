@@ -21,6 +21,15 @@
 - **🖥️ IP计算器** - 网络IP地址计算和子网划分工具
 - **⚡ Linux命令工具** - Linux命令快速查询和学习
 
+### 🤖 Chat AI 功能亮点
+
+- **多模型切换**：支持 Qwen、DeepSeek、Kimi、MiniMax 等模型
+- **流式输出**：逐字返回回答，交互体验更流畅
+- **思考过程展示**：可折叠查看推理内容（支持 reasoning）
+- **快捷能力**：内置翻译、摘要等常用入口
+- **输入安全与治理**：包含输入清洗、长度限制与注入检测
+- **上下文管理**：通过滑动窗口控制历史消息长度，平衡效果与成本
+
 ### 🎪 3D演示
 
 基于 Three.js 构建的多种3D效果演示：
@@ -105,6 +114,24 @@ pnpm build
 # 预览构建结果
 pnpm preview
 ```
+
+### Vercel 部署（AI 对话）
+
+项目内已使用同源接口 `"/api/chat"` 作为 AI 请求入口，生产环境通过 Vercel API Route 中转到 DashScope。
+
+部署时请在 Vercel 项目中配置环境变量：
+
+- `DASHSCOPE_API_KEY`：DashScope 的 API Key（仅服务端使用，不会暴露到前端）
+
+可选本地环境变量：
+
+- `VITE_API_URL=/api/chat`（默认即为该值，可不配置）
+- `DASHSCOPE_API_KEY=你的key`（仅本地 `vite dev` 代理使用）
+
+本地开发说明：
+
+- 使用 `npm run dev` 时，`/api/chat` 通过 Vite 代理转发到 DashScope。
+- 使用 Vercel 生产部署时，`/api/chat` 由 `api/chat.js` 处理并中转到 DashScope。
 
 ## 📁 项目结构
 src/
